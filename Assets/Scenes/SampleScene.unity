@@ -1661,6 +1661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 1991690664}
   scoreManager: {fileID: 440460493}
+  deathClip: {fileID: 8300000, guid: c84976b24bb0de2439c50417d27456b8, type: 3}
 --- !u!4 &2126478114
 Transform:
   m_ObjectHideFlags: 0

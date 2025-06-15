@@ -1,20 +1,36 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public AudioClip musicClip;
+    public static MusicManager Instance;
 
-    void Start()
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+
+    public AudioClip deathSound;
+
+    void Awake()
     {
-        AudioSource audio = gameObject.AddComponent<AudioSource>();
-        audio.clip = musicClip;
-        audio.loop = true;
-        audio.playOnAwake = true;
-        audio.Play();
+        // Singleton — чтобы был один на сцену
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // не уничтожать при перезапуске
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-        DontDestroyOnLoad(gameObject);
+    public void PlayDeathSound()
+    {
+        if (deathSound != null)
+        {
+            sfxSource.PlayOneShot(deathSound);
+        }
     }
 }
 
